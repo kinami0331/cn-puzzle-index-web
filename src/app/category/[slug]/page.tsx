@@ -11,19 +11,19 @@ async function getData(keyword: string) {
 }
 
 export async function generateStaticParams() {
-    const data = await fetch(`${process.env.API_URL}/categories/`).then((res) => res.json());
+    const data = await fetch(`${process.env.API_URL}/all_categories/`).then((res) => res.json());
     let categoriesList = data;
 
-    for (let i = 0; i < data.length; i++) {
-        // console.log(data[i]);
-        const tData = await getData(data[i].slug);
-        if (!!tData.childs) {
-            for (let j = 0; j < tData.childs; j++) {
-                categoriesList.push({name: tData.childs[j].name, slug: tData.childs[j].slug});
-                categoriesList.concat(tData.childs[j].keywords);
-            }
-        }
-    }
+    // for (let i = 0; i < data.length; i++) {
+    //     // console.log(data[i]);
+    //     const tData = await getData(data[i].slug);
+    //     if (!!tData.childs) {
+    //         for (let j = 0; j < tData.childs; j++) {
+    //             categoriesList.push({name: tData.childs[j].name, slug: tData.childs[j].slug});
+    //             categoriesList.concat(tData.childs[j].keywords);
+    //         }
+    //     }
+    // }
 
     console.log(categoriesList);
     // @ts-ignore

@@ -42,6 +42,7 @@ export default async function Page({params}: { params: { slug: string } }) {
         <div>
             {puzzles}
         </div>
+        <br/>
         <h3>作者</h3>
         <br/>
         <div>
