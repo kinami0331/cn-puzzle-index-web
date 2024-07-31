@@ -28,7 +28,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return (
         <main>
             <h1>
-                <a href={`${process.env.BASE_PATH}/`}>中国谜题索引</a>：主题词详情
+                <a href={`${process.env.BASE_PATH}/`}>中国谜题索引</a>：解谜活动详情
             </h1>
             <br />
             <h2>{data.name}</h2>
