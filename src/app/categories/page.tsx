@@ -11,7 +11,7 @@ export default async function Page() {
 
     const items = data.map((item) => (
         <div key={item.slug}>
-            <a href={`/category/${item.slug}`}>{item.name}</a>
+            <Link href={`/category/${item.slug}`}>{item.name}</Link>
         </div>
     ));
     return (

@@ -10,7 +10,7 @@ export default async function Page() {
     const data = await getData();
     const items = data.map((item) => (
         <div key={item.slug}>
-            <a href={`/author/${item.slug}`}>{item.name}</a>
+            <Link href={`/author/${item.slug}`}>{item.name}</Link>
         </div>
     ));
     return (
