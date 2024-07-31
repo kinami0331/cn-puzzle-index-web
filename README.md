@@ -37,4 +37,4 @@ pnpm run build
 
 更新脚本在 `scripts/update_data_from_feishu.py`，需要安装 `requests` 和 `python-dotenv` 依赖。但是您一般不会需要自行运行此脚本。
 
-更新数据：`python ./scripts/update_data_from_feishu.py`
+更新数据：`python ./scripts/update_data_from_feishu.py`。

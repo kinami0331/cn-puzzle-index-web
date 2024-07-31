@@ -1,0 +1,62 @@
+name: Update Data
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # 每 6 小时运行一次
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    env:
+      APP_ID: ${{ secrets.APP_ID }}
+      APP_SECRET: ${{ secrets.APP_SECRET }}
+      APP_TOKEN: ${{ secrets.APP_TOKEN }}
+      PUZZLE_TABLE_ID: ${{ secrets.PUZZLE_TABLE_ID }}
+      ACTIVITY_TABLE_ID: ${{ secrets.ACTIVITY_TABLE_ID }}
+      KEYWORD_TABLE_ID: ${{ secrets.KEYWORD_TABLE_ID }}
+      AUTHOR_TABLE_ID: ${{ secrets.AUTHOR_TABLE_ID }}
+      CATEGORY_TABLE_ID: ${{ secrets.CATEGORY_TABLE_ID }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+          pip install python-dotenv
+
+      - name: Run Python script
+        run: python ./scripts/update_data_from_feishu.py
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add data/
+          git diff --staged --exit-code || echo "::set-output name=changes::true"
+
+      - name: Commit and push if changes
+        if: steps.git-check.outputs.changes == 'true'
+        run: |
+          git commit -m "数据更新 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S %z')"
+          git push
+
+      - name: Create Pull Request
+        if: steps.git-check.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: "数据更新 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S %z')"
+          title: "数据更新 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S %z')"
+          body: "这是一个自动生成的 Pull Request，用于更新数据文件夹。"
+          branch: "update-data-${{ github.run_number }}"
+          delete-branch: true
