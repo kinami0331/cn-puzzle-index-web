@@ -43,6 +43,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
+          token: ${{ secrets.PAT }}
           commit-message:  "数据更新 ${{ env.CURRENT_DATE }}"
           title:  "数据更新 ${{ env.CURRENT_DATE }}"
           body: "这是一个自动生成的 Pull Request，用于更新数据文件夹。"
