@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { DataProvider } from '@/DataProvider';
 
 async function getData(keyword: string) {
@@ -16,20 +15,20 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
     const authors = data.authors.map((item) => (
         <p key={item.slug}>
-            <Link href={`/author/${item.slug}`}>{item.name}&nbsp;</Link>
+            <a href={`${process.env.BASE_PATH}/author/${item.slug}`}>{item.name}&nbsp;</a>
         </p>
     ));
 
     const puzzles = data.puzzles.map((item) => (
         <p key={item.slug}>
-            <Link href={`/puzzle/${item.slug}`}>{item.name}&nbsp;</Link>
+            <a href={`${process.env.BASE_PATH}/puzzle/${item.slug}`}>{item.name}&nbsp;</a>
         </p>
     ));
 
     return (
         <main>
             <h1>
-                <Link href={'/'}>中国谜题索引</Link>：主题词详情
+                <a href={`${process.env.BASE_PATH}/`}>中国谜题索引</a>：主题词详情
             </h1>
             <br />
             <h2>{data.name}</h2>

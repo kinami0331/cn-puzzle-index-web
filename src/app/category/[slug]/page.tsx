@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { DataProvider } from '@/DataProvider';
 
 async function getData(keyword: string) {
@@ -17,14 +16,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
     const children = data.children.map((item) => (
         <div key={item.slug}>
             <h3>
-                <Link href={`/category/${item.slug}`} style={{ color: '#fffdf7' }}>
+                <a href={`${process.env.BASE_PATH}/category/${item.slug}`} style={{ color: '#fffdf7' }}>
                     {item.name}
-                </Link>
+                </a>
             </h3>
             <br />
             {item.keywords.map((k) => (
                 <p key={k.slug}>
-                    <Link href={`/keyword/${k.slug}`}>{k.name}</Link>
+                    <a href={`${process.env.BASE_PATH}/keyword/${k.slug}`}>{k.name}</a>
                 </p>
             ))}
             <br />
@@ -33,14 +32,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
     const keywords = data.keywords.map((k) => (
         <p key={k.slug}>
-            <Link href={`/keyword/${k.slug}`}>{k.name}</Link>
+            <a href={`${process.env.BASE_PATH}/keyword/${k.slug}`}>{k.name}</a>
         </p>
     ));
 
     return (
         <main>
             <h1>
-                <Link href={'/'}>中国谜题索引</Link>：主题词详情
+                <a href={'/'}>中国谜题索引</a>：主题词详情
             </h1>
             <br />
             <h2>{data.name}</h2>

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { DataProvider } from '@/DataProvider';
 
 async function getData() {
@@ -10,13 +9,13 @@ export default async function Page() {
     const data = await getData();
     const items = data.map((item) => (
         <div key={item.slug}>
-            <Link href={`/activity/${item.slug}`}>{item.name}</Link>
+            <a href={`${process.env.BASE_PATH}/activity/${item.slug}`}>{item.name}</a>
         </div>
     ));
     return (
         <main>
             <h1>
-                <Link href={'/'}>中国谜题索引</Link>：主题词
+                <a href={`${process.env.BASE_PATH}/`}>中国谜题索引</a>：主题词
             </h1>
             <br />
             {items}

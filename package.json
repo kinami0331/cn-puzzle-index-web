@@ -24,7 +24,7 @@
     "eslint-config-next": "14.0.4",
     "pinyin": "4.0.0-alpha.2",
     "sass": "^1.69.7",
-    "typescript": "^5.2.2",
+    "typescript": "5.2.2",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3"
