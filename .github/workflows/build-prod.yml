@@ -1,0 +1,57 @@
+name: Build and Push
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        name: Install Node.js
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build website
+        env:
+          BEI_AN_MODE: 'true'
+        run: pnpm build
+
+      - name: Checkout Build Branch
+        uses: actions/checkout@v4
+        with:
+          ref: build
+          path: build-branch
+
+      - name: Copy Build Artifacts
+        run: |
+          cd build-branch
+          find . -maxdepth 1 ! -name '.git' ! -name '.' ! -name '..' -exec rm -rf {} +
+          cp -r dist/* build-branch/
+
+      - name: Commit and Push
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Actions"
+          git add .
+          git commit -m "Update build artifacts" -a
+          git push --force origin HEAD:build
