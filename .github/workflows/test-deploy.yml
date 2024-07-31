@@ -1,0 +1,41 @@
+name: Test deployment
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-deploy:
+    name: Test deployment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        name: Install Node.js
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint Code
+        run: pnpm run lint
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Build website
+        env:
+          GITHUB_PAGE_MODE: 'true'
+        run: pnpm build
