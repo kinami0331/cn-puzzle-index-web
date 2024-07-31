@@ -37,11 +37,14 @@ jobs:
           pip install python-dotenv
           python ./scripts/update_data_from_feishu.py
 
+      - name: Set date
+        run: echo "CURRENT_DATE=$(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S %z')" >> $GITHUB_ENV
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: "数据更新 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S %z')"
-          title: "数据更新 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S %z')"
+          commit-message:  "数据更新 ${{ env.CURRENT_DATE }}"
+          title:  "数据更新 ${{ env.CURRENT_DATE }}"
           body: "这是一个自动生成的 Pull Request，用于更新数据文件夹。"
           branch: "auto/update-data-${{ github.run_number }}"
           delete-branch: true
