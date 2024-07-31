@@ -4,10 +4,6 @@ on:
   pull_request:
     branches:
       - main
-  workflow_run:
-    workflows: [Update Data]
-    types:
-      - completed
 
 
 jobs:
