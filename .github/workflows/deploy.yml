@@ -31,6 +31,7 @@ jobs:
 
       - name: Build website
         env:
+          BASE_PATH: '/cn-puzzle-index-web'
           GITHUB_PAGE_MODE: 'true'
         run: pnpm build
 
