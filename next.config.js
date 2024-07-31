@@ -8,6 +8,7 @@ const nextConfig = {
     assetPrefix: process.env.BASE_PATH ?? '',
     env: {
         BASE_PATH: process.env.BASE_PATH ?? '',
+        BEI_AN_MODE: process.env.BEI_AN_MODE?.toUpperCase() === 'TRUE' ? 'TRUE' : 'FALSE',
     },
 };
 
