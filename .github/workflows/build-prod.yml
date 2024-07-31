@@ -45,12 +45,6 @@ jobs:
           BEI_AN_MODE: 'true'
         run: pnpm build
 
-      - name: Checkout Build Branch
-        uses: actions/checkout@v4
-        with:
-          ref: build
-          path: build-branch
-
       - name: Initialize and Push to Build Branch
         run: |
           cd dist
