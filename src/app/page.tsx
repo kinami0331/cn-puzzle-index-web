@@ -1,5 +1,4 @@
 import styles from './page.module.scss';
-import Link from 'next/link';
 import { DataProvider } from '@/DataProvider';
 
 async function getData() {
@@ -26,19 +25,19 @@ export default async function Home() {
             <br />
             <ul>
                 <li>
-                    <Link href="/keywords">查看所有主题词（{data.keywords}）</Link>
+                    <a href={`${process.env.BASE_PATH}/keywords`}>查看所有主题词（{data.keywords}）</a>
                 </li>
                 <li>
-                    <Link href="/puzzles">查看所有谜题（{data.puzzles}）</Link>
+                    <a href={`${process.env.BASE_PATH}/puzzles`}>查看所有谜题（{data.puzzles}）</a>
                 </li>
                 <li>
-                    <Link href="/categories">查看所有类目（{data.categories}）</Link>
+                    <a href={`${process.env.BASE_PATH}/categories`}>查看所有类目（{data.categories}）</a>
                 </li>
                 <li>
-                    <Link href="/activities">查看所有解谜活动（{data.categories}）</Link>
+                    <a href={`${process.env.BASE_PATH}/activities`}>查看所有解谜活动（{data.categories}）</a>
                 </li>
                 <li>
-                    <Link href="/authors">查看所有作者（{data.authors}）</Link>
+                    <a href={`${process.env.BASE_PATH}/authors`}>查看所有作者（{data.authors}）</a>
                 </li>
             </ul>
             <br />
@@ -46,9 +45,9 @@ export default async function Home() {
             <br />
             <p>
                 目前网页的数据来自于 Miaomiaomiao Team 建立的
-                <Link href={'https://puzzlehunt.cn/'} target="_blank" rel="noopener noreferer">
+                <a href={'https://puzzlehunt.cn/'} target="_blank" rel="noopener noreferer">
                     中国谜题索引。
-                </Link>
+                </a>
             </p>
             <p>后续更新方式还在计划中。</p>
             <br />
