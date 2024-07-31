@@ -90,21 +90,24 @@ export class DataProvider {
 
         const authors = parse(fs.readFileSync(authorsPath, 'utf-8'), {
             columns: false,
-            skip_empty_lines: true,
+            fromLine: 2,
+            skipEmptyLines: true,
         }) as [string, string][];
         for (const author of authors)
             this.authors.set(author[0], { slug: author[0], name: author[1], puzzles: [], activities: [] });
 
         const activities = parse(fs.readFileSync(activitiesPath, 'utf-8'), {
             columns: false,
-            skip_empty_lines: true,
+            fromLine: 2,
+            skipEmptyLines: true,
         }) as [string, string][];
         for (const activity of activities)
             this.activities.set(activity[0], { slug: activity[0], name: activity[1], authors: [], puzzles: [] });
 
         const categories = parse(fs.readFileSync(categoryPath, 'utf-8'), {
             columns: false,
-            skip_empty_lines: true,
+            fromLine: 2,
+            skipEmptyLines: true,
         }) as [string, string, string, string][];
         for (const category of categories)
             this.categories.set(category[0], {
@@ -130,7 +133,8 @@ export class DataProvider {
 
         const keywords = parse(fs.readFileSync(keywordsPath, 'utf-8'), {
             columns: false,
-            skip_empty_lines: true,
+            fromLine: 2,
+            skipEmptyLines: true,
         }) as [string, string, string, string][];
         for (const keyword of keywords) {
             const categorySlugs = keyword[2].split(',');
@@ -156,7 +160,8 @@ export class DataProvider {
 
         const puzzles = parse(fs.readFileSync(puzzlesPath, 'utf-8'), {
             columns: false,
-            skip_empty_lines: true,
+            fromLine: 2,
+            skipEmptyLines: true,
         }) as [string, string, string, string, string, string, string, string][];
         for (const puzzle of puzzles) {
             assert(this.activities.has(puzzle[2]), `activity slug '${puzzle[2]}' doesn't exist!`);
