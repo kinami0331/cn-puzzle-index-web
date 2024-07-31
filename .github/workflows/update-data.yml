@@ -21,6 +21,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Setup Python
@@ -43,16 +44,16 @@ jobs:
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
           git add data/
-          git diff --staged --exit-code || echo "::set-output name=changes::true"
+          git diff --staged --exit-code || echo "changes=true" >> $GITHUB_ENV
 
       - name: Commit and push if changes
-        if: steps.git-check.outputs.changes == 'true'
+        if: env.changes == 'true'
         run: |
           git commit -m "数据更新 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S %z')"
           git push
 
       - name: Create Pull Request
-        if: steps.git-check.outputs.changes == 'true'
+        if: env.changes == 'true'
         uses: peter-evans/create-pull-request@v4
         with:
           commit-message: "数据更新 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S %z')"
