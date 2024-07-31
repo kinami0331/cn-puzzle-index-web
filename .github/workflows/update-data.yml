@@ -17,6 +17,9 @@ jobs:
       KEYWORD_TABLE_ID: ${{ secrets.KEYWORD_TABLE_ID }}
       AUTHOR_TABLE_ID: ${{ secrets.AUTHOR_TABLE_ID }}
       CATEGORY_TABLE_ID: ${{ secrets.CATEGORY_TABLE_ID }}
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
