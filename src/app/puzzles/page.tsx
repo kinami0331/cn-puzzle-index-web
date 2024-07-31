@@ -10,7 +10,7 @@ export default async function Puzzles() {
     const data = await getData();
     const items = data.map((item) => (
         <div key={item.slug}>
-            <a href={`/puzzle/${item.slug}`}>{item.name}</a>
+            <Link href={`/puzzle/${item.slug}`}>{item.name}</Link>
         </div>
     ));
     return (

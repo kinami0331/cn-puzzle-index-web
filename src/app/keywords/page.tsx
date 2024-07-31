@@ -10,7 +10,7 @@ export default async function Keywords() {
     const data = await getData();
     const items = data.map((item) => (
         <div key={item.slug}>
-            <a href={`/keyword/${item.slug}`}>{item.name}</a>
+            <Link href={`/keyword/${item.slug}`}>{item.name}</Link>
         </div>
     ));
     return (
