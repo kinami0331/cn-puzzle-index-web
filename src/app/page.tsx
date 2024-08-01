@@ -19,19 +19,19 @@ export default async function Home() {
                 的内容，以及所有帮助填补《谜题索引》档案中空白的人们。
             </p>
             <br />
-            <h2>我如何访问它？</h2>
+            <h2>我该如何查看？</h2>
             <br />
-            <p>通过以下任何一种方式：</p>
+            <p>你可以从下面任意一种分类开始：</p>
             <br />
             <ul>
                 <li>
-                    <a href={`${process.env.BASE_PATH}/keywords`}>查看所有主题词（{data.keywords}）</a>
+                    <a href={`${process.env.BASE_PATH}/keywords`}>查看所有关键词（{data.keywords}）</a>
                 </li>
                 <li>
                     <a href={`${process.env.BASE_PATH}/puzzles`}>查看所有谜题（{data.puzzles}）</a>
                 </li>
                 <li>
-                    <a href={`${process.env.BASE_PATH}/categories`}>查看所有类目（{data.categories}）</a>
+                    <a href={`${process.env.BASE_PATH}/categories`}>查看所有类别（{data.categories}）</a>
                 </li>
                 <li>
                     <a href={`${process.env.BASE_PATH}/activities`}>查看所有解谜活动（{data.categories}）</a>
@@ -41,27 +41,37 @@ export default async function Home() {
                 </li>
             </ul>
             <br />
-            <h2>还有什么要补充的？</h2>
+            <h2>我该如何贡献条目？</h2>
             <br />
             <p>
-                目前网页的数据来自于 Miaomiaomiao Team 建立的
-                <a href={'https://puzzlehunt.cn/'} target="_blank" rel="noopener noreferer">
-                    中国谜题索引。
+                目前谜题索引数据使用飞书文档维护，由脚本定期从飞书文档抓取信息 {'->'} 更新代码仓库中的数据 {'->'}{' '}
+                构建网站并发布。代码仓库地址在{' '}
+                <a
+                    href={'https://github.com/kinami0331/cn-puzzle-index-web'}
+                    rel="noreferrer noopener"
+                    target={'_blank'}
+                >
+                    GitHub
                 </a>
+                。
             </p>
-            <p>后续更新方式还在计划中。</p>
-            <br />
-            <br />
-            <h2>关于未来</h2>
-            <br />
-            <p>我们正在考虑将其他解谜活动添加到该索引中。为了维护规范，解谜活动应该：</p>
-            <br />
             <ul>
-                <li>可以免费在线访问</li>
-                <li>在一段时间内具有稳定的Url链接</li>
-                <li>在某处有可免费访问的解析</li>
+                <li>如果您有一些较小的改动建议，例如勘误、细化关键词、调整分类等，可以直接开一个新 issue 讨论。</li>
+                <li>如果您有很多的谜题数据希望能加入索引，请联系维护者，直接在共享文档中更新。</li>
+                <li>
+                    如果您希望做一些功能上或者 UI 上的改动，直接提 Pull Request 即可，但是建议先联系维护者简单讨论一下。
+                </li>
+            </ul>
+
+            <br />
+            <h2>未来计划</h2>
+            <br />
+            <p>我们希望能尽可能多的收录中文谜题。为了方便维护和访问，被收录的谜题应该至少满足以下条件：</p>
+            <ul>
+                <li>可以免费在线访问，并且在一段时间内有相对稳定的题目链接。</li>
                 <li>不是在进行中的活动（即，玩家不再被要求对谜题解析保密）</li>
             </ul>
+            <p>除了成套的 Puzzle Hunt 之外，发布在微信公众号上的谜题也是可以收录的，希望大家踊跃投稿。</p>
         </main>
     );
 }

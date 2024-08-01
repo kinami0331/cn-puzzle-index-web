@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return (
         <main>
             <h1>
-                <a href={`${process.env.BASE_PATH}/`}>中国谜题索引</a>：主题词详情
+                <a href={`${process.env.BASE_PATH}/`}>中国谜题索引</a>：关键词详情
             </h1>
             <br />
             <h2>{data.name}</h2>
@@ -54,7 +54,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <br />
             <div>{puzzles}</div>
             <br />
-            <h3>类目</h3>
+            <h3>类别</h3>
             <br />
             <div>{categories}</div>
         </main>

@@ -49,7 +49,7 @@ export default async function Puzzle({ params }: { params: { slug: string } }) {
                 </a>
             </p>
             <br />
-            <h3>主题词</h3>
+            <h3>关键词</h3>
             <br />
             <div>{keywords}</div>
         </main>
