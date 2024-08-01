@@ -34,7 +34,7 @@ export default async function Home() {
                     <a href={`${process.env.BASE_PATH}/categories`}>查看所有类别（{data.categories}）</a>
                 </li>
                 <li>
-                    <a href={`${process.env.BASE_PATH}/activities`}>查看所有解谜活动（{data.categories}）</a>
+                    <a href={`${process.env.BASE_PATH}/activities`}>查看所有解谜活动（{data.activities}）</a>
                 </li>
                 <li>
                     <a href={`${process.env.BASE_PATH}/authors`}>查看所有作者（{data.authors}）</a>
