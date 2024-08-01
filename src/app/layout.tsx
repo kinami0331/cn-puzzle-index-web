@@ -24,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body>
                 <div className={styles.globalWrapper}>
                     <div className={styles.main}>{children}</div>
+                    <br />
                 </div>
                 {process.env.BEI_AN_MODE === 'TRUE' && (
                     <div
