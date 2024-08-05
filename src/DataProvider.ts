@@ -67,6 +67,10 @@ function toPinyin(text: string) {
     return result;
 }
 
+function isAscii(str: string) {
+    return /^[a-z-]+$/.test(str);
+}
+
 export class DataProvider {
     private static instance?: DataProvider;
     private static dataPath = path.join(process.cwd(), './data');
@@ -93,23 +97,28 @@ export class DataProvider {
             fromLine: 2,
             skipEmptyLines: true,
         }) as [string, string][];
-        for (const author of authors)
+        for (const author of authors) {
+            assert(isAscii(author[0]), `author slug '${author[0]}' does not satisfy the [a-z-]+ pattern!`);
             this.authors.set(author[0], { slug: author[0], name: author[1], puzzles: [], activities: [] });
+        }
 
         const activities = parse(fs.readFileSync(activitiesPath, 'utf-8'), {
             columns: false,
             fromLine: 2,
             skipEmptyLines: true,
         }) as [string, string][];
-        for (const activity of activities)
+        for (const activity of activities) {
+            assert(isAscii(activity[0]), `activity slug '${activity[0]}' does not satisfy the [a-z-]+ pattern!`);
             this.activities.set(activity[0], { slug: activity[0], name: activity[1], authors: [], puzzles: [] });
+        }
 
         const categories = parse(fs.readFileSync(categoryPath, 'utf-8'), {
             columns: false,
             fromLine: 2,
             skipEmptyLines: true,
         }) as [string, string, string, string][];
-        for (const category of categories)
+        for (const category of categories) {
+            assert(isAscii(category[0]), `category slug '${category[0]}' does not satisfy the [a-z-]+ pattern!`);
             this.categories.set(category[0], {
                 slug: category[0],
                 name: category[1],
@@ -119,12 +128,17 @@ export class DataProvider {
                 children: [],
                 keywords: [],
             });
+        }
 
         for (const [_, category] of this.categories) {
             if (category.parentSlug !== '') {
                 assert(
                     this.categories.has(category.parentSlug),
                     `category slug '${category.parentSlug}' doesn't exist!`,
+                );
+                assert(
+                    isAscii(category.parentSlug),
+                    `category parent slug '${category.parentSlug}' does not satisfy the [a-z-]+ pattern!`,
                 );
                 category.parent = this.categories.get(category.parentSlug);
                 category.parent!.children.push(category);
@@ -143,7 +157,7 @@ export class DataProvider {
                 assert(this.categories.has(categorySlug), `category slug '${categorySlug}' doesn't exist!`);
                 categories.push(this.categories.get(categorySlug)!);
             }
-
+            assert(isAscii(keyword[0]), `keyword slug '${keyword[0]}' does not satisfy the [a-z-]+ pattern!`);
             const keywordItem = {
                 slug: keyword[0],
                 name: keyword[1],
@@ -165,6 +179,7 @@ export class DataProvider {
         }) as [string, string, string, string, string, string, string, string][];
         for (const puzzle of puzzles) {
             assert(this.activities.has(puzzle[2]), `activity slug '${puzzle[2]}' doesn't exist!`);
+            assert(isAscii(puzzle[0]), `puzzle slug '${puzzle[0]}' does not satisfy the [a-z-]+ pattern!`);
             const puzzleActivity = this.activities.get(puzzle[2])!;
 
             let puzzleAuthors: AuthorItem[] = [];
