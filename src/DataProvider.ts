@@ -68,7 +68,7 @@ function toPinyin(text: string) {
 }
 
 function isAscii(str: string) {
-    return /^[a-z-]+$/.test(str);
+    return /^[0-9a-z-]+$/.test(str);
 }
 
 export class DataProvider {
