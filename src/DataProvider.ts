@@ -193,7 +193,7 @@ export class DataProvider {
             }
 
             let puzzleKeywords: KeywordItem[] = [];
-            const puzzleKeywordSlugs = puzzle[5].split(',');
+            const puzzleKeywordSlugs = puzzle[5] === '' ? [] : puzzle[5].split(',');
             for (const puzzleKeywordSlug of puzzleKeywordSlugs) {
                 assert(this.keywords.has(puzzleKeywordSlug), `keyword slug '${puzzleKeywordSlug}' doesn't exist!`);
                 const keyword = this.keywords.get(puzzleKeywordSlug)!;
