@@ -11,23 +11,23 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "next": "^14.2",
-    "react": "^18",
-    "react-dom": "^18"
+    "next": "^14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^20.14.13",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "csv-parse": "^5.5.6",
-    "eslint": "^8",
+    "eslint": "^8.57.0",
     "eslint-config-next": "14.0.4",
-    "pinyin": "4.0.0-alpha.2",
-    "sass": "^1.69.7",
-    "typescript": "5.2.2",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "prettier": "^3.3.3"
+    "pinyin": "4.0.0-alpha.2",
+    "prettier": "^3.3.3",
+    "sass": "^1.77.8",
+    "typescript": "5.2.2"
   },
   "browserslist": {
     "production": [

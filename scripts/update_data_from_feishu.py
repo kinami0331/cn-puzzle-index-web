@@ -85,8 +85,8 @@ for item in puzzle_items:
     puzzle_name = fields['name'][0]['text']   # 约定总是单行
     activity_slug = fields['activity_slug']
     round_or_number = fields['round_or_number'][0]['text']   # 约定总是单行
-    author_slugs = fields['author_slugs']
-    keyword_slugs = fields['keyword_slugs']
+    author_slugs = fields.get('author_slugs', [])
+    keyword_slugs = fields.get('keyword_slugs', [])
     puzzle_page = fields['puzzle_page']['link']
     solution_page = fields['solution_page']['link']
 
