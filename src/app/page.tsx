@@ -9,7 +9,7 @@ export default async function Home() {
     const data = await getData();
     return (
         <main className={styles.main}>
-            <h1>中国谜题</h1>
+            <h1>中文谜题</h1>
             <p>探索中国丰富文化与历史的独特指南，汇集了各类谜题、挑战和趣味知识，引领你深入中华文明的奥秘。</p>
             <br />
             <h2>索引中有什么？</h2>
