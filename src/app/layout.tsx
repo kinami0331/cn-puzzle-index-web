@@ -5,7 +5,7 @@ import beiAn from './(assets)/beian.png';
 import favicon from './(assets)/favicon.ico';
 
 export const metadata: Metadata = {
-    title: '中国谜题索引',
+    title: '喵喵喵解谜寻宝 - 中文谜题索引',
     description: '探索中国丰富文化与历史的独特指南，汇集了各类谜题、挑战和趣味知识，引领你深入中华文明的奥秘。',
 };
 
@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="zh-Hans-CN">
             <head>
-                <title>中国谜题索引</title>
+                <title>喵喵喵解谜寻宝 - 中文谜题索引</title>
                 <meta charSet={'utf-8'} />
                 <meta
                     name="viewport"

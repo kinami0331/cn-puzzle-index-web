@@ -15,7 +15,7 @@ export default async function Page() {
     return (
         <main>
             <h1>
-                <a href={`${process.env.BASE_PATH}/`}>中国谜题索引</a>：作者
+                <a href={`${process.env.BASE_PATH}/`}>中文谜题索引</a>：作者
             </h1>
             <br />
             {items}
